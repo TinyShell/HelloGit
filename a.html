@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1</title>
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url('https://source.unsplash.com/1920x1080/?love');
+            background-size: cover;
+            background-position: center;
+            overflow: hidden;
+            position: relative; /* 添加相对定位 */
+        }
+        .card {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            animation: fadeIn 2s ease-in-out;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            margin-bottom: 15px;
+            border: 2px solid #ff6b6b;
+            border-radius: 5px;
+            padding: 10px;
+            transition: border-color 0.3s;
+        }
+        textarea:focus {
+            border-color: #ff4d4d;
+            outline: none;
+        }
+        button {
+            padding: 12px 24px;
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        button:hover {
+            background-color: #ff4d4d;
+            transform: scale(1.05);
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            color: #ff6b6b;
+        }
+        p {
+            font-size: 1.2em;
+            color: #333;
+        }
+        #displayMessage {
+            margin-top: 25px;
+            font-size: 1.5em;
+            color: #ff6b6b;
+            font-weight: bold;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        #displayMessage.visible {
+            opacity: 1;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* 添加烟花效果容器样式 */
+        #fireworksContainer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* 防止干扰其他元素 */
+        }
+    </style>
+</head>
+<body>
+    <audio autoplay loop>
+        <source src="https://www.soundjay.com/button/beep-07.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <div class="card">
+        <h1>1</h1>
+        <p>今1：</p>
+        <textarea id="message" placeholder="ZHUFUYU"></textarea>
+        <button onclick="showMessage()">显示11</button>
+        <p id="displayMessage">[2显示]</p>
+    </div>
+
+    <!-- 添加烟花效果容器 -->
+    <div id="fireworksContainer"></div>
+
+    <!-- 
+        引入 fireworks.js 库 
+        https://github.com/crashmax-dev/fireworks-js?tab=readme-ov-file#fireworks-js 
+    -->
+    <script src="https://cdn.jsdelivr.net/npm/fireworks-js@2.x/dist/index.umd.js"></script>
+    <!-- UNPKG -->
+    <script src="https://unpkg.com/fireworks-js@2.x/dist/index.umd.js"></script>
+    <script>
+        function showMessage() {
+            const message = document.getElementById('message').value;
+            const displayMessage = document.getElementById('displayMessage');
+            displayMessage.innerText = message;
+            displayMessage.classList.add('visible');
+
+            // 启动烟花效果
+            startFireworks();
+        }
+
+        function startFireworks() {
+            const container = document.getElementById('fireworksContainer');
+            const fireworks = new Fireworks.default(container, {
+                opacity: 0.8,
+                traceLength: 3,
+                size: 3,
+                rocketsPoint: {
+                    min: 50,
+                    max: 50
+                },
+                lineWidth: {
+                    explosion: {
+                        min: 1,
+                        max: 3
+                    },
+                    trace: {
+                        min: 0.2,
+                        max: 1
+                    }
+                },
+                hue: {
+                    min: 0,
+                    max: 360
+                },
+                delay: {
+                    min: 15,
+                    max: 30
+                },
+                speed: 2,
+                acceleration: 1.05,
+                friction: 0.95,
+                gravity: 1.5,
+                particles: 50,
+                explosion: 5,
+                autoresize: true,
+                mouse: {
+                    click: true,
+                    move: false,
+                    max: 1
+                }
+            });
+            fireworks.start();
+        }
+    </script>
+</body>
+</html>
