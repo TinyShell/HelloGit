@@ -441,12 +441,12 @@
             >
             <div
                 style="height: 50vh;border: 1px solid rgb(220,94,77);background-color: rgb(220,94,77);border-radius: 10px 10px 50% 50% / 10px 10px 19% 19%;box-shadow: 0px 4px 0px -1px rgba(0, 0, 0, 0.2);">
-                <img src="./image/1.jpg" style="width:60px;height: 60px; margin: 0 auto 0; display: block; padding-top: 60px;">
+                <img src="./img/1.jpg" style="width:60px;height: 60px; margin: 0 auto 0; display: block; padding-top: 60px;">
                 <p style="font-size: 24px;text-align: center;padding-top: 20px;color: #ebcd9b;">口令红包</p>
                 <p style="font-size: 16px;text-align: center;padding-top: 20px;color: #ebcd9b;">宝贝节日快乐！<span class="text-tip" style="margin-left: 14px; font-size: 12px; background-color: #ebcd9b; padding: 1px 4px; color: rgb(220,94,77)">可提现</span></p>
                 <div  id="birthdayMessage" style="display:none;">
                         <p style="font-size: 16px;text-align: center;padding-top: 20px;color: #ebcd9b;">🎉辛苦了亲爱的，愿你幸福每一天！🎂</p>
-                        <p style="font-size: 16px;text-align: center;padding-top: 20px;color: #ebcd9b;">口令：爱你宝贝</p>
+                        <p style="font-size: 16px;text-align: center;padding-top: 20px;color: #ebcd9b;">口令：永远幸福平安 （你手机号后4位）</p>
                 </div>
             </div>
             <div id="openbtn"
@@ -482,12 +482,12 @@
     function launchFireworks() {
         // Show birthday message
         document.getElementById('birthdayMessage').style.display = 'block';
-
+        particles = [];
         // Launch fireworks at random positions
         for (let i = 0; i < 3; i++) {
             const x = Math.random() * canvas.width;
             const y = Math.random() * canvas.height / 2;
-            for (let j = 0; j < 100; j++) {
+            for (let j = 0; j < 300; j++) {
                 particles.push(createParticle(x, y));
             }
         }
