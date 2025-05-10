@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>生日烟花</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+    }
+    .card {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      z-index: 2;
+      position: relative;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #ff6b6b;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #ff4d4d;
+    }
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+    }
+    #birthdayMessage {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="fireworksCanvas"></canvas>
+
+<div class="card">
+  <h1>22</h1>
+  <p>333</p>
+  <button onclick="launchFireworks()">btn</button>
+  <div  id="birthdayMessage" >
+        <p style="display:none;">🎉生日快乐！愿你幸福每一天！🎂</p>
+        <p style="display:none;">口令：爱你宝贝</p>
+  </div>
+</div>
+
+<script>
+  const canvas = document.getElementById('fireworksCanvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  let particles = [];
+
+  function createParticle(x, y) {
+    const angle = Math.random() * 2 * Math.PI;
+    const speed = Math.random() * 5 + 2;
+    return {
+      x,
+      y,
+      dx: Math.cos(angle) * speed,
+      dy: Math.sin(angle) * speed,
+      radius: Math.random() * 3 + 1,
+      alpha: 1,
+      color: `hsl(${Math.random() * 360}, 100%, 50%)`,
+    };
+  }
+
+  function launchFireworks() {
+    // Show birthday message
+    document.getElementById('birthdayMessage').style.display = 'block';
+
+    // Launch fireworks at random positions
+    for (let i = 0; i < 3; i++) {
+      const x = Math.random() * canvas.width;
+      const y = Math.random() * canvas.height / 2;
+      for (let j = 0; j < 100; j++) {
+        particles.push(createParticle(x, y));
+      }
+    }
+  }
+
+  function animate() {
+    ctx.fillStyle = "rgba(0, 0, 0, 0.2)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    particles.forEach((p, i) => {
+      p.x += p.dx;
+      p.y += p.dy;
+      p.alpha -= 0.01;
+
+      if (p.alpha <= 0) {
+        particles.splice(i, 1);
+      } else {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.globalAlpha = p.alpha;
+        ctx.fill();
+        ctx.globalAlpha = 1;
+      }
+    });
+
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+  setInterval(launchFireworks, 3000);
+  
+  // Optional: Resize canvas on window resize
+  window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  });
+</script>
+
+</body>
+</html>

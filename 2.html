@@ -1,58 +1,104 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>结婚纪念日祝福</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .card {
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-        textarea {
-            width: 100%;
-            height: 100px;
-            margin-bottom: 10px;
-        }
-        button {
-            padding: 10px 20px;
-            background-color: #ff6b6b;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #ff4d4d;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Red Envelope</title>
+  <style>
+    body {
+      background-color: #ff4d4d;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding-top: 100px;
+    }
+
+    .envelope {
+        width: 200px;
+        height: 150px;
+        background: linear-gradient(to bottom right, #d90000, #ff2a2a);
+        margin: 0 auto;
+        border-radius: 10px;
+        position: relative;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+        overflow: hidden;
+        font-family: 'Microsoft Yahei', sans-serif;
+    }
+
+    /* Top flap with curve */
+    .envelope::before {
+    content: "";
+    position: absolute;
+    top: -50px;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: linear-gradient(to bottom right, #fff, #eee);
+    border-bottom: 2px solid black;
+    border-radius: 50% / 100%;
+    }
+
+    /* Text on the flap */
+    .envelope::after {
+    content: "恭喜发财";
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+    white-space: nowrap;
+    }
+/* Golden stripe */
+.envelope .stripe {
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 160px;
+  height: 30px;
+  background: radial-gradient(circle at center, gold, orange);
+  opacity: 0.8;
+  border-radius: 15px;
+  border: 1px solid #b87300;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+    .button-circle {
+      width: 60px;
+      height: 60px;
+      background-color: yellow;
+      border-radius: 50%;
+      margin: 20px auto 0;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: black;
+      border: none;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    }
+
+    .message {
+      display: none;
+      margin-top: 30px;
+      font-size: 20px;
+      color: white;
+    }
+  </style>
 </head>
 <body>
-    <div class="card">
-        <h1>亲爱的[老婆的名字]</h1>
-        <p>今天是我们的结婚纪念日，我想对你说：</p>
-        <textarea id="message" placeholder="写下你的祝福语..."></textarea>
-        <button onclick="showMessage()">显示祝福</button>
-        <p id="displayMessage" style="margin-top: 20px;"></p>
-    </div>
 
-    <script>
-        function showMessage() {
-            const message = document.getElementById('message').value;
-            document.getElementById('displayMessage').innerText = message;
-        }
-    </script>
+<div class="envelope"></div>
+<div class="stripe"></div> <!-- Add this line -->
+<button class="button-circle" onclick="showBlessing()">开</button>
+<div id="blessingMessage" class="message">🎉 祝你新年快乐，万事如意！🎉</div>
+
+<script>
+  function showBlessing() {
+    document.getElementById('blessingMessage').style.display = 'block';
+  }
+</script>
+
 </body>
 </html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>微信红包摇晃动画</title>
+    <style>
+        .red-packet {
+            position: relative;
+            width: 150px;
+            height: 200px;
+            background-color: red;
+            border-radius: 15px;
+            text-align: center;
+            line-height: 200px;
+            color: white;
+            font-size: 24px;
+            perspective: 1000px;
+            transform-style: preserve-3d;
+            transition: transform 0.5s;
+        }
+
+        .front, .back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+        }
+
+        .back {
+            transform: rotateY(180deg);
+        }
+
+        .red-packet.shake {
+            animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+            transform: translate3d(0, 0, 0);
+            backface-visibility: hidden;
+            perspective: 1000px;
+        }
+
+        @keyframes shake {
+            10%, 90% { transform: translate3d(-1px, 0, 0); }
+            20%, 80% { transform: translate3d(2px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+            40%, 60% { transform: translate3d(4px, 0, 0); }
+        }
+
+    </style>
+
+
+</head>
+<body>
+    <div class="red-packet" id="redPacket">
+        <div class="front">红包</div>
+        <div class="back">拆红包</div>
+    </div>
+    <button onclick="startShakeAnimation()">摇晃红包</button>
+    <script src="scripts.js"></script>
+</body>
+<script>
+    function startShakeAnimation() {
+        var redPacket = document.getElementById('redPacket');
+        redPacket.classList.add('shake');
+        setTimeout(function() {
+            redPacket.classList.remove('shake');
+        }, 500); // 与CSS中的动画时间相匹配
+    }
+
+</script>
+</html>
