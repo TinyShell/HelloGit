@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Players by Team - First 5 Matches</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .match-container {
+      margin-bottom: 40px;
+      border: 1px solid #ddd;
+      padding: 10px;
+    }
+
+    .team-container {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 10px;
+    }
+
+    table {
+      width: 45%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 8px;
+      border: 1px solid #ccc;
+      text-align: center;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Players by Team - First 5 Matches</h2>
+
+<div id="matchesContainer"></div>
+
+<script>
+  const url = 'http://aoe2.cc/api/player/1801246/matches';
+
+  fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      const matches = data.data.slice(0, 5); // Get first 5 matches
+      const container = document.getElementById('matchesContainer');
+
+      matches.forEach((match, index) => {
+        const matchDiv = document.createElement('div');
+        matchDiv.className = 'match-container';
+        matchDiv.innerHTML = `
+          <h3>Match #${index + 1} (${match.id})</h3>
+          <div class="team-container">
+            <table id="team1-${index}">
+              <thead>
+                <tr>
+                  <th>Team 1 - Name</th>
+                  <th>Team</th>
+                  <th>Rating</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+            <table id="team2-${index}">
+              <thead>
+                <tr>
+                  <th>Team 2 - Name</th>
+                  <th>Team</th>
+                  <th>Rating</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        `;
+        container.appendChild(matchDiv);
+
+        // Now it's safe to render because the tables are part of the DOM
+        const team1Players = match.players.filter(p => p.team === "1");
+        const team2Players = match.players.filter(p => p.team === "2");
+
+        renderTeam(`team1-${index}`, team1Players);
+        renderTeam(`team2-${index}`, team2Players);
+      });
+    })
+    .catch(error => {
+      console.error('Error fetching or processing data:', error);
+    });
+
+  function renderTeam(tableId, playerList) {
+    const tableBody = document.querySelector(`#${tableId} tbody`);
+    if (!tableBody) {
+      console.error(`Table body with ID ${tableId} not found!`);
+      return;
+    }
+
+    tableBody.innerHTML = ''; // Clear previous rows
+
+    playerList.forEach(player => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td>${player.name}</td>
+        <td>${player.team}</td>
+        <td>${player.rating}</td>
+      `;
+      tableBody.appendChild(row);
+    });
+  }
+</script>
+
+</body>
+</html>
